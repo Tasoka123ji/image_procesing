@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCV Image Processing with Flask</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Upload an Image for Processing</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Choose an image to upload:</label>
+                <input type="file" class="form-control-file" id="file" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload and Process</button>
+        </form>
+        
+        {% if original_image %}
+        <h3 class="mt-5">Original Image:</h3>
+        <img src="{{ url_for('uploaded_file', filename=original_image.split('/')[-1]) }}" class="img-fluid">
+
+        <h3 class="mt-5">Processed Image (Grayscale):</h3>
+        <img src="{{ url_for('processed_file', filename=processed_image.split('/')[-1]) }}" class="img-fluid">
+        {% endif %}
+    </div>
+</body>
+</html>
+
